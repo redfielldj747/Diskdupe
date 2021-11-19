@@ -1,21 +1,18 @@
-import subprocess
-
+import functions
 
 def main ():
 
-    command = 'sudo mkdir -p /media/ubuntu/WriteTo'
-    process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
-    output, error = process.communicate()
 
-    if error != None:
-        command = 'notify-send -u normal -t 600 "External drive mounted"'
-        process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
-        output, error = process.communicate()
-        print(output)
-    else:
-        command = 'notify-send -u normal -t 600 "External drive failed to mount"'
-        process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
-        output, error = process.communicate()
+    #Making directory if not already present
+    #functions.SendNotification("Creating /media/ubuntu/WriteTo directory and mounting USB drive there")
+
+    mkdir_exit = functions.makeDirectory("/media/ubuntu/WriteTo")
+
+    if mkdir_exit != None:
+        print(mkdir_exit)
+
+    #functions.SendNotification("It works!")
+
 
     # command = 'sudo mkdir -p /media/ubuntu/WriteTo'
     # process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
